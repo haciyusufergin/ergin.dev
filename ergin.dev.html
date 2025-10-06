@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacı Yusuf Ergin - Portfolyo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        main {
+            position: relative;
+            z-index: 1;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .lang-btn.active {
+            background-color: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        
+        <div class="absolute top-6 right-6 z-20">
+            <div class="flex items-center bg-zinc-900 border border-zinc-700 rounded-full p-1">
+                <button id="lang-tr" class="lang-btn px-3 py-1 text-sm font-medium rounded-full transition-colors active">TR</button>
+                <button id="lang-en" class="lang-btn px-3 py-1 text-sm font-medium rounded-full transition-colors">EN</button>
+            </div>
+        </div>
+
+        
+        <header class="mb-16 text-center flex flex-col items-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full border border-purple-500/20 mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M12 3a6 6 0 0 0 9 9a6 6 0 0 0-9-9Z"/><path d="M12 15a6 6 0 0 0-9-9a6 6 0 0 0 9 9Z"/></svg>
+                <span class="text-sm text-purple-300" data-translate="availability">İş alımına açık</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
+                Hacı Yusuf
+                <br />
+                <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Ergin
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-8" data-translate="job_title">
+                Full-Stack Developer & Security Researcher
+            </p>
+            <a href="mailto:haciyusuf@ergin.dev" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-medium hover:shadow-lg hover:shadow-white/20 transition-all hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <span data-translate="contact_button">İletişime geçelim</span>
+            </a>
+        </header>
+
+       
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+            
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-8">
+                <div class="space-y-6">
+                    <div>
+                        <div class="text-sm text-zinc-500 mb-2" data-translate="hometown_label">Memleket</div>
+                        <div class="text-2xl font-semibold">Adıyaman, Kahta</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-zinc-500 mb-2" data-translate="focus_areas_label">Odak Alanları</div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-purple-500/10 rounded-full text-purple-300 border border-purple-500/20">Python Development</span>
+                            <span class="px-4 py-2 bg-blue-500/10 rounded-full text-blue-300 border border-blue-500/20">Web Development</span>
+                            <span class="px-4 py-2 bg-red-500/10 rounded-full text-red-300 border border-red-500/20" data-translate="focus_cyber">Siber Güvenlik</span>
+                            <span class="px-4 py-2 bg-green-500/10 rounded-full text-green-300 border border-green-500/20">AI & Automation</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-zinc-800">
+                        <p class="text-zinc-400 leading-relaxed" data-translate="bio">
+                            7 yıldır yazılım geliştiriyorum. Python ile backend sistemleri ve otomasyon araçları, 
+                            JavaScript/TypeScript ile modern web uygulamaları geliştiriyorum. Güvenlik araştırmaları, 
+                            tersine mühendislik ve yapay zeka projeleri üzerine çalışıyorum. Felsefe, problem çözmeye 
+                            yönelik analitik yaklaşımımı şekillendiriyor.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 md:col-span-4 stat-card">
+                <div class="space-y-8">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">7+</div>
+                        <div class="text-sm text-zinc-300" data-translate="stat_experience">Yıllık Kodlama<br>Deneyimi</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">18</div>
+                        <div class="text-sm text-zinc-300" data-translate="stat_survival">Hayatta Kalma<br>Yılı</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">5+</div>
+                        <div class="text-sm text-zinc-300" data-translate="stat_languages">Konuşma<br>Dili</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+            
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
+                <h3 class="text-lg font-semibold mb-6" data-translate="achievements_title">Başarılar & Projeler</h3>
+                <div class="space-y-4">
+                     <div class="flex items-start gap-3 p-3 bg-blue-500/5 rounded-xl border border-blue-500/10">
+                        <div class="w-2 h-2 rounded-full bg-blue-400 mt-2"></div>
+                        <div>
+                            <div class="font-medium text-sm" data-translate="achievement_table_tennis_title">1.lik</div>
+                            <div class="text-xs text-zinc-500" data-translate="achievement_table_tennis_desc">İlçe ve İl Masa Tenisi Birinciliği</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-yellow-500/5 rounded-xl border border-yellow-500/10">
+                        <div class="w-2 h-2 rounded-full bg-yellow-400 mt-2"></div>
+                        <div>
+                            <div class="font-medium text-sm" data-translate="achievement_robot_title">3. Lük</div>
+                            <div class="text-xs text-zinc-500" data-translate="achievement_robot_desc">Arduino Çizgi İzleyen Robot Yarışması</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-green-500/5 rounded-xl border border-green-500/10">
+                        <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
+                        <div>
+                            <div class="font-medium text-sm">Gmail Security Research</div>
+                            <div class="text-xs text-zinc-500" data-translate="achievement_gmail_desc">Tersine Mühendislik Analizi</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-purple-500/5 rounded-xl border border-purple-500/10">
+                        <div class="w-2 h-2 rounded-full bg-purple-400 mt-2"></div>
+                        <div>
+                            <div class="font-medium text-sm" data-translate="achievement_oss_title">Open Source Katkı</div>
+                            <div class="text-xs text-zinc-500" data-translate="achievement_oss_desc">Çeşitli Açık Kaynak Projelere Katkı</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
+                <h3 class="text-lg font-semibold mb-6" data-translate="education_title">Eğitim</h3>
+                 <div class="space-y-4">
+                    
+                    <div class="flex items-start gap-4 p-4 bg-zinc-800/50 rounded-2xl">
+                        <div class="bg-purple-500/10 text-purple-400 rounded-lg p-2 mt-1">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 5 6 5 6 5s6 0 6-5v-5"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Kahta Anadolu Lisesi</h4>
+                            <p class="text-sm text-zinc-400" data-translate="high_school_level">Lise / Sayısal Bölüm (2021 - 2025)</p>
+                            <p class="text-xs text-zinc-500 mt-1" data-translate="high_school_desc">Matematik ve Fen alanlarında yoğunlaşmış bir eğitim programı.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-4 bg-zinc-800/50 rounded-2xl">
+                         <div class="bg-blue-500/10 text-blue-400 rounded-lg p-2 mt-1">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Fatih Sultan Mehmet İmamhatip Ortaokulu</h4>
+                            <p class="text-sm text-zinc-400" data-translate="middle_school_level">Ortaokul (2017 - 2021)</p>
+                            <p class="text-xs text-zinc-500 mt-1" data-translate="middle_school_desc">Temel bilimler, sosyal bilimler ve dini ilimler üzerine kurulu kapsamlı bir müfredat.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 p-4 bg-zinc-800/50 rounded-2xl">
+                        <div class="bg-green-500/10 text-green-400 rounded-lg p-2 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 8-4 8 4"/><path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/><path d="M18 5v17"/><path d="M6 5v17"/><path d="M12 5v17"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Şeyhbaba İlkokulu</h4>
+                            <p class="text-sm text-zinc-400" data-translate="primary_school_level">İlkokul (2013 - 2017)</p>
+                            <p class="text-xs text-zinc-500 mt-1" data-translate="primary_school_desc">Öğrenim hayatının temellerinin atıldığı ilk basamak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+            
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-4">
+                 <h3 class="text-lg font-semibold mb-6" data-translate="languages_title">Diller</h3>
+                 <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm">Türkçe</span>
+                            <span class="text-xs text-zinc-500" data-translate="native_lang">Anadil</span>
+                        </div>
+                        <div class="w-full bg-zinc-700 rounded-full h-2">
+                            <div class="bg-green-400 h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm">Kürtçe</span>
+                            <span class="text-xs text-zinc-500" data-translate="native_lang">Anadil</span>
+                        </div>
+                        <div class="w-full bg-zinc-700 rounded-full h-2">
+                            <div class="bg-green-400 h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm">İngilizce</span>
+                            <span class="text-xs text-zinc-500" data-translate="english_level">B1-B2 Seviye</span>
+                        </div>
+                        <div class="w-full bg-zinc-700 rounded-full h-2">
+                            <div class="bg-blue-400 h-2 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm">Farsça</span>
+                            <span class="text-xs text-zinc-500" data-translate="persian_level">Temel Seviye</span>
+                        </div>
+                        <div class="w-full bg-zinc-700 rounded-full h-2">
+                            <div class="bg-purple-400 h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            
+            
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-8">
+                <h3 class="text-lg font-semibold mb-6" data-translate="hobbies_title">Hobiler & İlgi Alanları</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        <span class="text-sm" data-translate="hobby_philosophy">Felsefe & Psikoloji</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <span class="text-sm" data-translate="hobby_poetry">Şiir Yazmak & Okumak</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span class="text-sm" data-translate="hobby_oss">Açık Kaynak Projeler</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
+                        <span class="text-sm" data-translate="hobby_security">Güvenlik Araştırmaları</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                        <span class="text-sm" data-translate="hobby_hiking">Doğa Yürüyüşleri</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M14.65 19.35A8.8 8.8 0 0 0 18 12a8.8 8.8 0 0 0-3.35-7.35"/><path d="M9.35 4.65A8.8 8.8 0 0 0 6 12a8.8 8.8 0 0 0 3.35 7.35"/><line x1="14" x2="16" y2="9" y1="9"/><line x1="8" x2="10" y2="15" y1="15"/><path d="M12 18a3 3 0 0 1-3-3h6a3 3 0 0 1-3 3z"/><path d="M12 6a3 3 0 0 0 3 3H9a3 3 0 0 0 3-3z"/></svg>
+                        <span class="text-sm" data-translate="hobby_theater">Tiyatro / Oyunculuk</span>
+                    </div>
+                     <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-rose-400"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                        <span class="text-sm" data-translate="hobby_dubbing">Dublaj</span>
+                    </div>
+                     <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-teal-400"><circle cx="12" cy="12" r="10"></circle><path d="m15.6 8.4-2.8 4.2-2.8-4.2"></path><path d="M10 12h4"></path><path d="M15.6 15.6 12.8 11.4 10 15.6"></path><path d="M10 12h4"></path><path d="M8.4 8.4 11.2 12.6 8.4 16.8"></path><path d="M14 12h-4"></path><path d="M15.6 8.4 12.8 12.6 15.6 16.8"></path><path d="M10 12h4"></path></svg>
+                        <span class="text-sm" data-translate="hobby_football">Futbol</span>
+                    </div>
+                     <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400"><circle cx="18" cy="5" r="1"/><path d="M14 19l-4-4 2-2-4-4-2 2-4-4"/><path d="M15 13l-1.4-1.4"/><path d="m14 8 2.8-2.8"/></svg>
+                        <span class="text-sm" data-translate="hobby_karate">Karate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+           
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
+                <h3 class="text-lg font-semibold mb-6" data-translate="skills_title">Teknik Yetkinlikler</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_backend">BACKEND & SİSTEM</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Python</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Django</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">FastAPI</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">REST API</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Node.js</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Automation</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_frontend">FRONTEND & MOBİL</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">JavaScript</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">TypeScript</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">React</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">HTML/CSS</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Tailwind</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Android</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_security">GÜVENLİK & ARAŞTIRMA</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Penetration Testing</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Reverse Engineering</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Vulnerability Research</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_ai">AI & VERİ BİLİMİ</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Machine Learning</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Data Analysis</span>
+                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
+                <h3 class="text-lg font-semibold mb-6" data-translate="connect_title">Bağlan</h3>
+                <div class="space-y-2">
+                    <a href="https://github.com/haciyusufergin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">GitHub</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/haci-yusuf-ergin/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">LinkedIn</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                    <a href="https://x.com/HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">X / Twitter</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                    <a href="https://t.me/yusuf_ergin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">Telegram</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-12">
+                 <h3 class="text-lg font-semibold mb-6" data-translate="other_platforms_title">Diğer Platformlar</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                     <a href="https://www.instagram.com/_yusufergin/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">Instagram</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                     <a href="https://www.youtube.com/@HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M2.5 17a24.12 24.12 0 0 1 0-10C2.5 4.24 4.24 2.5 7 2.5h10c2.76 0 4.5 1.74 4.5 4.5v10c0 2.76-1.74 4.5-4.5 4.5H7c-2.76 0-4.5-1.74-4.5-4.5Z"/><path d="m10 15 5-3-5-3z"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">YouTube</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                     <a href="https://haciyusufergin.blogspot.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors" data-translate="poetry_blog">Şiir Blogu</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                     <a href="https://t.me/erginsiir" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors" data-translate="poetry_channel">Şiir Kanalı</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                     <a href="https://ergoparfum.com" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
+                        <div class="flex items-center gap-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><path d="M12 22a7 7 0 0 0 7-7h-4a3 3 0 0 1-3-3V2.5"/></svg>
+                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors" data-translate="perfume_site">Parfüm Sitesi</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                    </a>
+                 </div>
+            </div>
+        </div>
+
+        <footer class="mt-16 text-center text-zinc-600 text-sm">
+            <p>© 2025 Hacı Yusuf Ergin</p>
+            <p class="mt-2">ergin.dev</p>
+        </footer>
+    </main>
+
+    <script>
+
+        const translations = {
+            tr: {
+                availability: 'İş alımına açık',
+                job_title: 'Full-Stack Developer & Security Researcher',
+                contact_button: 'İletişime geçelim',
+                hometown_label: 'Memleket',
+                focus_areas_label: 'Odak Alanları',
+                focus_cyber: 'Siber Güvenlik',
+                bio: `7 yıldır yazılım geliştiriyorum. Python ile backend sistemleri ve otomasyon araçları, 
+                      JavaScript/TypeScript ile modern web uygulamaları geliştiriyorum. Güvenlik araştırmaları, 
+                      tersine mühendislik ve yapay zeka projeleri üzerine çalışıyorum. Felsefe, problem çözmeye 
+                      yönelik analitik yaklaşımımı şekillendiriyor.`,
+                stat_experience: 'Yıllık Kodlama<br>Deneyimi',
+                stat_survival: 'Hayatta Kalma<br>Yılı',
+                stat_languages: 'Konuşma<br>Dili',
+                achievements_title: 'Başarılar & Projeler',
+                achievement_table_tennis_title: '1.lik',
+                achievement_table_tennis_desc: 'İlçe ve İl Masa Tenisi Birinciliği',
+                achievement_robot_title: '3. Lük',
+                achievement_robot_desc: 'Arduino Çizgi İzleyen Robot Yarışması',
+                achievement_gmail_desc: 'Tersine Mühendislik Analizi',
+                achievement_oss_title: 'Open Source Katkı',
+                achievement_oss_desc: 'Çeşitli Açık Kaynak Projelere Katkı',
+                education_title: 'Eğitim',
+                high_school_level: 'Lise / Sayısal Bölüm (2021 - 2025)',
+                high_school_desc: 'Fen ve matematik alanlarında yoğunlaşmış bir eğitim programı.',
+                middle_school_level: 'Ortaokul (2017 - 2021)',
+                middle_school_desc: 'Temel bilimler, sosyal bilimler ve dini ilimler üzerine kurulu kapsamlı bir müfredat.',
+                primary_school_level: 'İlkokul (2013 - 2017)',
+                primary_school_desc: 'Öğrenim hayatının temellerinin atıldığı ilk basamak.',
+                languages_title: 'Diller',
+                native_lang: 'Anadil',
+                english_level: 'B1-B2 Seviye',
+                persian_level: 'Temel Seviye',
+                hobbies_title: 'Hobiler & İlgi Alanları',
+                hobby_philosophy: 'Felsefe & Psikoloji',
+                hobby_poetry: 'Şiir Yazmak & Okumak',
+                hobby_oss: 'Açık Kaynak Projeler',
+                hobby_security: 'Güvenlik Araştırmaları',
+                hobby_hiking: 'Doğa Yürüyüşleri',
+                hobby_theater: 'Tiyatro / Oyunculuk',
+                hobby_dubbing: 'Dublaj',
+                hobby_football: 'Futbol',
+                hobby_karate: 'Karate',
+                skills_title: 'Teknik Yetkinlikler',
+                skills_backend: 'BACKEND & SİSTEM',
+                skills_frontend: 'FRONTEND & MOBİL',
+                skills_security: 'GÜVENLİK & ARAŞTIRMA',
+                skills_ai: 'AI & VERİ BİLİMİ',
+                connect_title: 'Bağlan',
+                other_platforms_title: 'Diğer Platformlar',
+                poetry_blog: 'Şiir Blogu',
+                poetry_channel: 'Şiir Kanalı',
+                perfume_site: 'Parfüm Sitesi'
+            },
+            en: {
+                availability: 'Open to work',
+                job_title: 'Full-Stack Developer & Security Researcher',
+                contact_button: "Let's get in touch",
+                hometown_label: 'Hometown',
+                focus_areas_label: 'Focus Areas',
+                focus_cyber: 'Cyber Security',
+                bio: `I have been developing software for 7 years. I build backend systems and automation tools with Python, 
+                      and modern web applications with JavaScript/TypeScript. I work on security research, 
+                      reverse engineering, and artificial intelligence projects. Philosophy shapes my analytical 
+                      approach to problem-solving.`,
+                stat_experience: 'Years of Coding<br>Experience',
+                stat_survival: 'Years of<br>Survival',
+                stat_languages: 'Spoken<br>Languages',
+                achievements_title: 'Achievements & Projects',
+                achievement_table_tennis_title: '1st Place',
+                achievement_table_tennis_desc: 'District and Provincial Table Tennis Championship',
+                achievement_robot_title: '3rd Place',
+                achievement_robot_desc: 'Arduino Line Follower Robot Competition',
+                achievement_gmail_desc: 'Reverse Engineering Analysis',
+                achievement_oss_title: 'Open Source Contribution',
+                achievement_oss_desc: 'Contribution to Various Open Source Projects',
+                education_title: 'Education',
+                high_school_level: 'High School / Science & Math (2021 - 2025)',
+                high_school_desc: 'An educational program focused on science and mathematics.',
+                middle_school_level: 'Middle School (2017 - 2021)',
+                middle_school_desc: 'A comprehensive curriculum based on basic sciences, social sciences and religious studies.',
+                primary_school_level: 'Primary School (2013 - 2017)',
+                primary_school_desc: 'The first step where the foundations of learning life were laid.',
+                languages_title: 'Languages',
+                native_lang: 'Native',
+                english_level: 'B1-B2 Level',
+                persian_level: 'Basic Level',
+                hobbies_title: 'Hobbies & Interests',
+                hobby_philosophy: 'Philosophy & Psychology',
+                hobby_poetry: 'Writing & Reading Poetry',
+                hobby_oss: 'Open Source Projects',
+                hobby_security: 'Security Research',
+                hobby_hiking: 'Nature Hiking',
+                hobby_theater: 'Theater / Acting',
+                hobby_dubbing: 'Voice Acting',
+                hobby_football: 'Football',
+                hobby_karate: 'Karate',
+                skills_title: 'Technical Skills',
+                skills_backend: 'BACKEND & SYSTEM',
+                skills_frontend: 'FRONTEND & MOBILE',
+                skills_security: 'SECURITY & RESEARCH',
+                skills_ai: 'AI & DATA SCIENCE',
+                connect_title: 'Connect',
+                other_platforms_title: 'Other Platforms',
+                poetry_blog: 'Poetry Blog',
+                poetry_channel: 'Poetry Channel',
+                perfume_site: 'Perfume Site'
+            }
+        };
+
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.getElementById('lang-tr').classList.toggle('active', lang === 'tr');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        };
+
+        document.getElementById('lang-tr').addEventListener('click', () => setLanguage('tr'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+        
+        setLanguage('tr');
+
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: (canvas.height / 120) * (canvas.width / 120)
+        };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(139, 92, 246, 0.5)';
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                        this.x += 5;
+                    }
+                    if (mouse.x > this.x && this.x > this.size * 10) {
+                        this.x -= 5;
+                    }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                        this.y += 5;
+                    }
+                    if (mouse.y > this.y && this.y > this.size * 10) {
+                        this.y -= 5;
+                    }
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                let color = 'rgba(139, 92, 246, 0.5)';
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(147, 112, 219, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            mouse.radius = (canvas.height / 120) * (canvas.width / 120);
+            init();
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
+
+// by Hacı Yusuf Ergin  ;)
