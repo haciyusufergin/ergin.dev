@@ -6,686 +6,1543 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-2TR96S9QND');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacı Yusuf Ergin - Portfolyo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Hacı Yusuf Ergin — ergin.dev</title>
+    <meta name="description" content="Full-Stack Developer & Security Researcher. 7+ yıllık deneyim.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000;
+        :root {
+            --arkaplan: #050505;
+            --yuzey: #0a0a0a;
+            --kenarlık: #1a1a1a;
+            --kenarlık-hover: #2a2a2a;
+            --yazi: #e8e8e8;
+            --yazi-soluk: #777;
+            --yazi-kirık: #555;
+            --vurgu: #c8ff00;
+            --vurgu-rgb: 200, 255, 0;
+            --vurgu2: #00f0ff;
+            --vurgu2-rgb: 0, 240, 255;
+            --vurgu3: #ff3366;
+            --vurgu3-rgb: 255, 51, 102;
+            --font-baslik: 'Syne', sans-serif;
+            --font-kod: 'JetBrains Mono', monospace;
+            --font-govde: 'Space Grotesk', sans-serif;
+            --yuvarlaklık: 16px;
+            --yuvarlaklık-kucuk: 8px;
+            --yuvarlaklık-mini: 4px;
         }
-        #particle-canvas {
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--vurgu) var(--arkaplan);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--arkaplan); }
+        ::-webkit-scrollbar-thumb { background: var(--vurgu); border-radius: 3px; }
+
+        body {
+            font-family: var(--font-govde);
+            background: linear-gradient(180deg, #080810 0%, #050505 40%, #0a0508 100%);
+            color: var(--yazi);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        ::selection {
+            background: var(--vurgu);
+            color: #000;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .izgara-arkaplan {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(200, 255, 0, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .arkaplan-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .arkaplan-orb:nth-child(2) {
+            width: 600px;
+            height: 600px;
+            background: rgba(200, 255, 0, 0.03);
+            top: -200px;
+            right: -150px;
+            animation: orbSuzul 20s ease-in-out infinite alternate;
+        }
+
+        .arkaplan-orb:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            background: rgba(0, 240, 255, 0.02);
+            bottom: -200px;
+            left: -100px;
+            animation: orbSuzul 25s ease-in-out infinite alternate-reverse;
+        }
+
+        .arkaplan-orb:nth-child(4) {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 51, 102, 0.015);
+            top: 40%;
+            left: 50%;
+            animation: orbSuzul 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes orbSuzul {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -20px); }
+            100% { transform: translate(-20px, 30px); }
+        }
+
+        .imlec-isigi {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(var(--vurgu-rgb), 0.07) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        .kapsayici {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navigasyon {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            right: 0;
+            z-index: 100;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(5, 5, 5, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.3s;
         }
-        main {
-            position: relative;
-            z-index: 1;
+
+        .navigasyon.kaydi {
+            padding: 10px 24px;
+            background: rgba(5, 5, 5, 0.95);
         }
-        .stat-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+
+        .nav-logo {
+            font-family: var(--font-kod);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--vurgu);
+            letter-spacing: -0.5px;
+            text-decoration: none;
         }
-        .lang-btn.active {
-            background-color: #fff;
+
+        .nav-sag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dil-secici {
+            display: flex;
+            background: var(--yuzey);
+            border: 1px solid var(--kenarlık);
+            border-radius: 100px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .dil-btn {
+            background: none;
+            border: none;
+            color: var(--yazi-soluk);
+            font-family: var(--font-kod);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.25s;
+            letter-spacing: 1px;
+        }
+
+        .dil-btn.aktif {
+            background: var(--vurgu);
             color: #000;
+            font-weight: 600;
+        }
+
+        .durum-noktasi {
+            width: 8px;
+            height: 8px;
+            background: var(--vurgu);
+            border-radius: 50%;
+            animation: nabiz 2s ease-in-out infinite;
+        }
+
+        @keyframes nabiz {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(var(--vurgu-rgb), 0.4); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(var(--vurgu-rgb), 0); }
+        }
+
+        .durum-yazi {
+            font-family: var(--font-kod);
+            font-size: 12px;
+            color: var(--vurgu);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kahraman {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 90px 0 24px;
+            position: relative;
+        }
+
+        .kahraman-etiket {
+            font-family: var(--font-kod);
+            font-size: 14px;
+            color: var(--vurgu);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            opacity: 0;
+            animation: yukariKaydir 0.8s 0.2s forwards;
+        }
+
+        .kahraman-isim {
+            font-family: var(--font-baslik);
+            font-size: clamp(40px, 5.5vw, 82px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin-bottom: 18px;
+            white-space: nowrap;
+            opacity: 0;
+            animation: yukariKaydir 0.8s 0.4s forwards;
+        }
+
+        .kahraman-isim .soyad {
+            -webkit-text-stroke: 2px var(--yazi);
+            color: transparent;
+            transition: all 0.4s;
+            display: inline;
+        }
+
+        .kahraman-isim .soyad:hover {
+            -webkit-text-stroke: 0px;
+            color: var(--vurgu);
+        }
+
+        .kahraman-aciklama {
+            font-size: 17px;
+            color: var(--yazi-soluk);
+            max-width: 780px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: yukariKaydir 0.8s 0.6s forwards;
+        }
+
+        .kahraman-butonlar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: yukariKaydir 0.8s 0.8s forwards;
+        }
+
+        .btn-ana {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--vurgu);
+            color: #000;
+            font-family: var(--font-kod);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: var(--yuvarlaklık-kucuk);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-ana::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .btn-ana:hover::before { transform: translateX(100%); }
+        .btn-ana:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(var(--vurgu-rgb), 0.3); }
+
+        .btn-ikincil {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: transparent;
+            color: var(--yazi);
+            font-family: var(--font-kod);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: var(--yuvarlaklık-kucuk);
+            border: 1px solid var(--kenarlık);
+            transition: all 0.3s;
+        }
+
+        .btn-ikincil:hover {
+            border-color: var(--vurgu);
+            color: var(--vurgu);
+            transform: translateY(-2px);
+        }
+
+        .kayan-yazi-bolum {
+            overflow: hidden;
+            padding: 12px 0;
+            border-top: 1px solid var(--kenarlık);
+            border-bottom: 1px solid var(--kenarlık);
+        }
+
+        .kayan-yazi-iz {
+            display: flex;
+            animation: kayanYazi 25s linear infinite;
+            width: max-content;
+        }
+
+        .kayan-yazi-iz span {
+            font-family: var(--font-baslik);
+            font-size: 44px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            white-space: nowrap;
+            padding: 0 24px;
+            -webkit-text-stroke: 1px var(--kenarlık-hover);
+            color: transparent;
+        }
+
+        .kayan-yazi-iz span .dolu {
+            -webkit-text-stroke: 0;
+            color: var(--vurgu);
+            opacity: 0.15;
+        }
+
+        @keyframes kayanYazi {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .bolum {
+            padding: 28px 0;
+        }
+
+        .bolum-baslik {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .bolum-numara {
+            font-family: var(--font-kod);
+            font-size: 13px;
+            color: var(--vurgu);
+            letter-spacing: 2px;
+        }
+
+        .bolum-adi {
+            font-family: var(--font-baslik);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .bolum-cizgi {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--kenarlık), transparent);
+        }
+
+        .bento-izgara {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 10px;
+        }
+
+        .kart {
+            background: var(--yuzey);
+            border: 1px solid var(--kenarlık);
+            border-radius: var(--yuvarlaklık);
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(var(--vurgu-rgb), 0), transparent);
+            transition: all 0.4s;
+        }
+
+        .kart:hover {
+            border-color: var(--kenarlık-hover);
+            transform: translateY(-2px);
+        }
+
+        .kart:hover::before {
+            background: linear-gradient(90deg, transparent, rgba(var(--vurgu-rgb), 0.5), transparent);
+        }
+
+        .kart-etiket {
+            font-family: var(--font-kod);
+            font-size: 11px;
+            color: var(--yazi-kirık);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .kart-baslik {
+            font-family: var(--font-baslik);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .kol-4 { grid-column: span 4; }
+        .kol-5 { grid-column: span 5; }
+        .kol-6 { grid-column: span 6; }
+        .kol-7 { grid-column: span 7; }
+        .kol-8 { grid-column: span 8; }
+        .kol-12 { grid-column: span 12; }
+
+        .istatistik-satir {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .istatistik-oge {
+            text-align: center;
+            padding: 16px 0;
+        }
+
+        .istatistik-oge:not(:last-child) {
+            border-bottom: 1px solid var(--kenarlık);
+        }
+
+        .istatistik-sayi {
+            font-family: var(--font-baslik);
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--vurgu);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .istatistik-etiket {
+            font-family: var(--font-kod);
+            font-size: 11px;
+            color: var(--yazi-soluk);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        .hakkinda-yazi {
+            font-size: 16px;
+            color: var(--yazi-soluk);
+            line-height: 1.8;
+        }
+
+        .odak-etiketler {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .odak-etiket {
+            font-family: var(--font-kod);
+            font-size: 12px;
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1px solid;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .odak-etiket:hover { transform: translateY(-1px); }
+        .etiket-python { border-color: rgba(var(--vurgu-rgb), 0.3); color: var(--vurgu); background: rgba(var(--vurgu-rgb), 0.05); }
+        .etiket-web { border-color: rgba(var(--vurgu2-rgb), 0.3); color: var(--vurgu2); background: rgba(var(--vurgu2-rgb), 0.05); }
+        .etiket-guvenlik { border-color: rgba(var(--vurgu3-rgb), 0.3); color: var(--vurgu3); background: rgba(var(--vurgu3-rgb), 0.05); }
+        .etiket-ai { border-color: rgba(168, 85, 247, 0.3); color: #a855f7; background: rgba(168, 85, 247, 0.05); }
+
+        .basari-oge {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px;
+            border-radius: var(--yuvarlaklık-kucuk);
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .basari-oge:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--kenarlık);
+        }
+
+        .basari-sira {
+            font-family: var(--font-baslik);
+            font-size: 24px;
+            font-weight: 800;
+            min-width: 44px;
+            line-height: 1;
+        }
+
+        .basari-sira.altin { color: #fbbf24; }
+        .basari-sira.bronz { color: #fb923c; }
+        .basari-sira.arastirma { color: var(--vurgu2); font-size: 18px; }
+        .basari-sira.acik-kaynak { color: #a855f7; font-size: 18px; }
+
+        .basari-bilgi h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .basari-bilgi p {
+            font-family: var(--font-kod);
+            font-size: 12px;
+            color: var(--yazi-kirık);
+        }
+
+        .zaman-cizgisi {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .zaman-cizgisi::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--vurgu), var(--vurgu2), var(--vurgu3));
+        }
+
+        .zaman-oge {
+            position: relative;
+            padding: 0 0 24px 24px;
+        }
+
+        .zaman-oge:last-child { padding-bottom: 0; }
+
+        .zaman-oge::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 2px solid var(--vurgu);
+            background: var(--arkaplan);
+        }
+
+        .zaman-oge:nth-child(2)::before { border-color: var(--vurgu2); }
+        .zaman-oge:nth-child(3)::before { border-color: var(--vurgu3); }
+
+        .zaman-yil {
+            font-family: var(--font-kod);
+            font-size: 12px;
+            color: var(--vurgu);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .zaman-oge:nth-child(2) .zaman-yil { color: var(--vurgu2); }
+        .zaman-oge:nth-child(3) .zaman-yil { color: var(--vurgu3); }
+
+        .zaman-okul {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .zaman-aciklama {
+            font-size: 14px;
+            color: var(--yazi-kirık);
+            line-height: 1.6;
+        }
+
+        .dil-oge { margin-bottom: 18px; }
+        .dil-oge:last-child { margin-bottom: 0; }
+
+        .dil-bilgi {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .dil-adi { font-size: 15px; font-weight: 500; }
+
+        .dil-seviye {
+            font-family: var(--font-kod);
+            font-size: 11px;
+            color: var(--yazi-kirık);
+            letter-spacing: 1px;
+        }
+
+        .dil-cubuk-iz {
+            width: 100%;
+            height: 3px;
+            background: var(--kenarlık);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .dil-cubuk-dolgu {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+        }
+
+        .cubuk-vurgu { background: var(--vurgu); }
+        .cubuk-vurgu2 { background: var(--vurgu2); }
+        .cubuk-mor { background: #a855f7; }
+
+        .hobi-izgara {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .hobi-oge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: var(--yuvarlaklık-kucuk);
+            border: 1px solid var(--kenarlık);
+            font-size: 14px;
+            color: var(--yazi-soluk);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .hobi-oge:hover {
+            border-color: var(--vurgu);
+            color: var(--yazi);
+            background: rgba(var(--vurgu-rgb), 0.03);
+        }
+
+        .hobi-ikon {
+            font-size: 18px;
+            width: 22px;
+            text-align: center;
+        }
+
+        .yetkinlik-ic-izgara {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .yetkinlik-kategori-adi {
+            font-family: var(--font-kod);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--yazi-soluk);
+        }
+
+        .yetkinlik-kategori-adi .nokta {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .yetkinlik-haplar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .yetkinlik-hap {
+            font-family: var(--font-kod);
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: var(--yuvarlaklık-mini);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--kenarlık);
+            color: var(--yazi-soluk);
+            transition: all 0.25s;
+        }
+
+        .yetkinlik-hap:hover {
+            border-color: var(--vurgu);
+            color: var(--vurgu);
+            background: rgba(var(--vurgu-rgb), 0.05);
+            transform: translateY(-1px);
+        }
+
+        .baglanti-izgara {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .baglanti-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: var(--yuvarlaklık-kucuk);
+            border: 1px solid var(--kenarlık);
+            text-decoration: none;
+            color: var(--yazi-soluk);
+            transition: all 0.3s;
+        }
+
+        .baglanti-link:hover {
+            border-color: var(--vurgu);
+            background: rgba(var(--vurgu-rgb), 0.03);
+            color: var(--yazi);
+        }
+
+        .baglanti-ic {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .baglanti-ikon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .baglanti-link:hover .baglanti-ikon { opacity: 1; }
+
+        .baglanti-adi {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .baglanti-ok {
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+            transform: translate(-4px, 4px);
+            transition: all 0.3s;
+        }
+
+        .baglanti-link:hover .baglanti-ok {
+            opacity: 0.7;
+            transform: translate(0, 0);
+        }
+
+        .altbilgi {
+            padding: 24px 0;
+            text-align: center;
+            border-top: 1px solid var(--kenarlık);
+            margin-top: 4px;
+        }
+
+        .altbilgi-yazi {
+            font-family: var(--font-kod);
+            font-size: 13px;
+            color: var(--yazi-kirık);
+            letter-spacing: 1px;
+        }
+
+        .altbilgi-domain {
+            font-family: var(--font-baslik);
+            font-size: 15px;
+            color: var(--vurgu);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        @keyframes yukariKaydir {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .goruntule {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .goruntule.gorunur {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bento-izgara .kart:nth-child(1) { transition-delay: 0s; }
+        .bento-izgara .kart:nth-child(2) { transition-delay: 0.1s; }
+        .bento-izgara .kart:nth-child(3) { transition-delay: 0.15s; }
+
+        .glitch:hover { animation: glitchYazi 0.3s ease-in-out; }
+
+        @keyframes glitchYazi {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @media (max-width: 1024px) {
+            .kol-4, .kol-5, .kol-6, .kol-7, .kol-8, .kol-12 {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-izgara { grid-template-columns: 1fr; }
+            .kol-4, .kol-5, .kol-6, .kol-7, .kol-8, .kol-12 { grid-column: span 1; }
+            .kahraman-isim { font-size: clamp(38px, 11vw, 64px); letter-spacing: -2px; white-space: normal; }
+            .kahraman-isim .ad { display: block; }
+            .kahraman-isim .soyad { display: block; }
+            .kahraman-etiket { font-size: 12px; }
+            .kahraman-butonlar { flex-direction: column; align-items: center; }
+            .btn-ana, .btn-ikincil { justify-content: center; width: 100%; max-width: 320px; }
+            .hobi-izgara { grid-template-columns: repeat(2, 1fr); }
+            .kayan-yazi-iz span { font-size: 32px; }
+            .navigasyon { padding: 12px 16px; }
+            .kapsayici { padding: 0 16px; }
+            .bolum { padding: 24px 0; }
+            .kart { padding: 22px; }
+            .yetkinlik-ic-izgara { grid-template-columns: 1fr; gap: 16px; }
+            .durum-yazi > span:last-child { display: none; }
+            .istatistik-sayi { font-size: 36px; }
+            .kahraman { padding: 80px 0 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .hobi-izgara { grid-template-columns: 1fr; }
+            .kahraman-isim { font-size: clamp(32px, 11vw, 48px); }
+            .kahraman { padding: 76px 0 20px; }
+            .kahraman-etiket { font-size: 10px; letter-spacing: 2px; }
+            .bolum-adi { font-size: 22px; }
+            .kart { padding: 18px; }
+            .bolum { padding: 20px 0; }
         }
     </style>
 </head>
-<body class="bg-black text-white">
+<body>
+    <div class="izgara-arkaplan"></div>
+    <div class="arkaplan-orb"></div>
+    <div class="arkaplan-orb"></div>
+    <div class="arkaplan-orb"></div>
+    <div class="imlec-isigi" id="imlecIsigi"></div>
 
-    <canvas id="particle-canvas"></canvas>
-
-    <main class="max-w-7xl mx-auto px-6 py-16">
-        
-        <div class="absolute top-6 right-6 z-20">
-            <div class="flex items-center bg-zinc-900 border border-zinc-700 rounded-full p-1">
-                <button id="lang-tr" class="lang-btn px-3 py-1 text-sm font-medium rounded-full transition-colors active">TR</button>
-                <button id="lang-en" class="lang-btn px-3 py-1 text-sm font-medium rounded-full transition-colors">EN</button>
+    <nav class="navigasyon" id="navigasyon">
+        <a href="#" class="nav-logo">ergin.dev</a>
+        <div class="nav-sag">
+            <div class="durum-yazi">
+                <div class="durum-noktasi"></div>
+                <span data-translate="availability">İş alımına açık</span>
+            </div>
+            <div class="dil-secici">
+                <button id="dil-tr" class="dil-btn aktif">TR</button>
+                <button id="dil-en" class="dil-btn">EN</button>
             </div>
         </div>
+    </nav>
 
-        
-        <header class="mb-16 text-center flex flex-col items-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full border border-purple-500/20 mb-8">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M12 3a6 6 0 0 0 9 9a6 6 0 0 0-9-9Z"/><path d="M12 15a6 6 0 0 0-9-9a6 6 0 0 0 9 9Z"/></svg>
-                <span class="text-sm text-purple-300" data-translate="availability">İş alımına açık</span>
-            </div>
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
-                Hacı Yusuf
-                <br />
-                <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Ergin
-                </span>
+    <div class="kapsayici">
+
+        <section class="kahraman">
+            <div class="kahraman-etiket" data-translate="hero_tag">FULL-STACK DEVELOPER & GÜVENLİK ARAŞTIRMACISI</div>
+            <h1 class="kahraman-isim">
+                <span class="ad">Hacı Yusuf </span><span class="soyad glitch">ERGiN</span>
             </h1>
-            <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-8" data-translate="job_title">
-                Full-Stack Developer & Security Researcher
-            </p>
-            <a href="mailto:haciyusuf@ergin.dev" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-medium hover:shadow-lg hover:shadow-white/20 transition-all hover:scale-105">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                <span data-translate="contact_button">İletişime geçelim</span>
-            </a>
-        </header>
-
-       
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-            
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-8">
-                <div class="space-y-6">
-                    <div>
-                        <div class="text-sm text-zinc-500 mb-2" data-translate="hometown_label">Memleket</div>
-                        <div class="text-2xl font-semibold">Adıyaman, Kahta</div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-zinc-500 mb-2" data-translate="focus_areas_label">Odak Alanları</div>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-purple-500/10 rounded-full text-purple-300 border border-purple-500/20">Python Development</span>
-                            <span class="px-4 py-2 bg-blue-500/10 rounded-full text-blue-300 border border-blue-500/20">Web Development</span>
-                            <span class="px-4 py-2 bg-red-500/10 rounded-full text-red-300 border border-red-500/20" data-translate="focus_cyber">Siber Güvenlik</span>
-                            <span class="px-4 py-2 bg-green-500/10 rounded-full text-green-300 border border-green-500/20">AI & Automation</span>
-                        </div>
-                    </div>
-                    <div class="pt-4 border-t border-zinc-800">
-                        <p class="text-zinc-400 leading-relaxed" data-translate="bio">
-                            7 yıldır yazılım geliştiriyorum. Python ile backend sistemleri ve otomasyon araçları, 
-                            JavaScript/TypeScript ile modern web uygulamaları geliştiriyorum. Güvenlik araştırmaları, 
-                            tersine mühendislik ve yapay zeka projeleri üzerine çalışıyorum. Felsefe, problem çözmeye 
-                            yönelik analitik yaklaşımımı şekillendiriyor.
-                        </p>
-                    </div>
-                </div>
+            <p class="kahraman-aciklama" data-translate="bio">Kod yazarak büyüdüm. Python ile otomasyon ve güvenlik araçları, TypeScript/React ile modern web uygulamaları geliştiriyorum. Old school bir otomasyon tutkunuyum — scraping, tersine mühendislik ve offensive security benim oyun alanım.</p>
+            <div class="kahraman-butonlar">
+                <a href="mailto:contact@ergin.dev" class="btn-ana">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect width="20" height="16" x="2" y="4" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    <span data-translate="contact_button">İletişime Geç</span>
+                </a>
+                <a href="https://github.com/HaciYusufErgin" target="_blank" class="btn-ikincil">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                        <path d="M9 18c-4.51 2-5-2-7-2"/>
+                    </svg>
+                    GitHub
+                </a>
             </div>
+        </section>
 
-            
-            <div class="rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 md:col-span-4 stat-card">
-                <div class="space-y-8">
-                    <div class="text-center">
-                        <div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">7+</div>
-                        <div class="text-sm text-zinc-300" data-translate="stat_experience">Yıllık Kodlama<br>Deneyimi</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">18</div>
-                        <div class="text-sm text-zinc-300" data-translate="stat_survival">Hayatta Kalma<br>Yılı</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">5+</div>
-                        <div class="text-sm text-zinc-300" data-translate="stat_languages">Konuşma<br>Dili</div>
-                    </div>
-                </div>
+        <div class="kayan-yazi-bolum">
+            <div class="kayan-yazi-iz">
+                <span>PYTHON <span class="dolu">●</span> TYPESCRIPT <span class="dolu">●</span> REACT <span class="dolu">●</span> SECURITY <span class="dolu">●</span> AI <span class="dolu">●</span> AUTOMATION <span class="dolu">●</span></span>
+                <span>PYTHON <span class="dolu">●</span> TYPESCRIPT <span class="dolu">●</span> REACT <span class="dolu">●</span> SECURITY <span class="dolu">●</span> AI <span class="dolu">●</span> AUTOMATION <span class="dolu">●</span></span>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-            
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
-                <h3 class="text-lg font-semibold mb-6" data-translate="achievements_title">Birtakım Başarılar</h3>
-                <div class="space-y-4">
-                     <div class="flex items-start gap-3 p-3 bg-blue-500/5 rounded-xl border border-blue-500/10">
-                        <div class="w-2 h-2 rounded-full bg-blue-400 mt-2"></div>
-                        <div>
-                            <div class="font-medium text-sm" data-translate="achievement_table_tennis_title">1.lik</div>
-                            <div class="text-xs text-zinc-500" data-translate="achievement_table_tennis_desc">İlçe ve İl Masa Tenisi Birinciliği</div>
-                        </div>
+        <section class="bolum">
+            <div class="bolum-baslik goruntule">
+                <span class="bolum-numara">01</span>
+                <h2 class="bolum-adi" data-translate="about_section_title">Hakkımda</h2>
+                <div class="bolum-cizgi"></div>
+            </div>
+            <div class="bento-izgara">
+                <div class="kart kol-8 goruntule">
+                    <div class="kart-etiket" data-translate="hometown_label">MEMLEKET</div>
+                    <div class="kart-baslik">Adıyaman, Kahta</div>
+                    <p class="hakkinda-yazi" data-translate="bio_extended">7 yıldır yazılım dünyasındayım. Python ile otomasyon araçları, web scraping sistemleri ve güvenlik araçları; TypeScript ve React ile modern web uygulamaları geliştiriyorum. Old school hardcore otomasyon yaklaşımını benimsiyorum — requests, selenium, tersine mühendislik ve offensive security benim doğal habitatım. Felsefe ve şiir, analitik düşünce yapımı besleyen en önemli ilgi alanlarım.</p>
+                    <div class="odak-etiketler">
+                        <span class="odak-etiket etiket-python">Python Development</span>
+                        <span class="odak-etiket etiket-web">Web Development</span>
+                        <span class="odak-etiket etiket-guvenlik" data-translate="focus_cyber">Siber Güvenlik</span>
+                        <span class="odak-etiket etiket-ai">AI & Automation</span>
                     </div>
-                    <div class="flex items-start gap-3 p-3 bg-yellow-500/5 rounded-xl border border-yellow-500/10">
-                        <div class="w-2 h-2 rounded-full bg-yellow-400 mt-2"></div>
-                        <div>
-                            <div class="font-medium text-sm" data-translate="achievement_robot_title">3. Lük</div>
-                            <div class="text-xs text-zinc-500" data-translate="achievement_robot_desc">Arduino Çizgi İzleyen Robot Yarışması</div>
+                </div>
+                <div class="kart kol-4 goruntule">
+                    <div class="istatistik-satir">
+                        <div class="istatistik-oge">
+                            <div class="istatistik-sayi" data-sayac="7">0</div>
+                            <div class="istatistik-etiket" data-translate="stat_experience">Yıllık Kodlama<br>Deneyimi</div>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-3 p-3 bg-green-500/5 rounded-xl border border-green-500/10">
-                        <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
-                        <div>
-                            <div class="font-medium text-sm">Gmail Security Research</div>
-                            <div class="text-xs text-zinc-500" data-translate="achievement_gmail_desc">Tersine Mühendislik Analizi</div>
+                        <div class="istatistik-oge">
+                            <div class="istatistik-sayi" data-sayac="18">0</div>
+                            <div class="istatistik-etiket" data-translate="stat_survival">Hayatta Kalma<br>Yılı</div>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-3 p-3 bg-purple-500/5 rounded-xl border border-purple-500/10">
-                        <div class="w-2 h-2 rounded-full bg-purple-400 mt-2"></div>
-                        <div>
-                            <div class="font-medium text-sm" data-translate="achievement_oss_title">Open Source Katkı</div>
-                            <div class="text-xs text-zinc-500" data-translate="achievement_oss_desc">Çeşitli Açık Kaynak Projelere Katkı</div>
+                        <div class="istatistik-oge">
+                            <div class="istatistik-sayi" data-sayac="5">0</div>
+                            <div class="istatistik-etiket" data-translate="stat_languages">Konuşma<br>Dili</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
-                <h3 class="text-lg font-semibold mb-6" data-translate="education_title">Eğitim</h3>
-                 <div class="space-y-4">
-                    
-                    <div class="flex items-start gap-4 p-4 bg-zinc-800/50 rounded-2xl">
-                        <div class="bg-purple-500/10 text-purple-400 rounded-lg p-2 mt-1">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 5 6 5 6 5s6 0 6-5v-5"/></svg>
+        <section class="bolum">
+            <div class="bolum-baslik goruntule">
+                <span class="bolum-numara">02</span>
+                <h2 class="bolum-adi" data-translate="achievements_section_title">Başarılar & Eğitim</h2>
+                <div class="bolum-cizgi"></div>
+            </div>
+            <div class="bento-izgara">
+                <div class="kart kol-6 goruntule">
+                    <div class="kart-etiket" data-translate="achievements_title">BAŞARILAR</div>
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <div class="basari-oge">
+                            <div class="basari-sira altin">1.</div>
+                            <div class="basari-bilgi">
+                                <h4 data-translate="achievement_table_tennis_title">İlçe & İl Birinciliği</h4>
+                                <p data-translate="achievement_table_tennis_desc">İlçe ve İl Masa Tenisi Birinciliği</p>
+                            </div>
+                        </div>
+                        <div class="basari-oge">
+                            <div class="basari-sira bronz">3.</div>
+                            <div class="basari-bilgi">
+                                <h4 data-translate="achievement_robot_title">Robot Yarışması</h4>
+                                <p data-translate="achievement_robot_desc">Arduino Çizgi İzleyen Robot Yarışması</p>
+                            </div>
+                        </div>
+                        <div class="basari-oge">
+                            <div class="basari-sira arastirma">◉</div>
+                            <div class="basari-bilgi">
+                                <h4>Gmail Security Research</h4>
+                                <p data-translate="achievement_gmail_desc">Tersine Mühendislik Analizi</p>
+                            </div>
+                        </div>
+                        <div class="basari-oge">
+                            <div class="basari-sira acik-kaynak">◈</div>
+                            <div class="basari-bilgi">
+                                <h4 data-translate="achievement_oss_title">Open Source Katkı</h4>
+                                <p data-translate="achievement_oss_desc">Çeşitli Açık Kaynak Projelere Katkı</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kart kol-6 goruntule">
+                    <div class="kart-etiket" data-translate="education_title">EĞİTİM</div>
+                    <div class="zaman-cizgisi">
+                        <div class="zaman-oge">
+                            <div class="zaman-yil" data-translate="high_school_level">2021 — 2025</div>
+                            <div class="zaman-okul">Kahta Anadolu Lisesi</div>
+                            <div class="zaman-aciklama" data-translate="high_school_desc">Matematik ve Fen alanlarında yoğunlaşmış bir eğitim programı.</div>
+                        </div>
+                        <div class="zaman-oge">
+                            <div class="zaman-yil" data-translate="middle_school_level">2017 — 2021</div>
+                            <div class="zaman-okul">Fatih Sultan Mehmet İmamhatip Ortaokulu</div>
+                            <div class="zaman-aciklama" data-translate="middle_school_desc">Temel bilimler, sosyal bilimler ve dini ilimler üzerine kurulu kapsamlı bir müfredat.</div>
+                        </div>
+                        <div class="zaman-oge">
+                            <div class="zaman-yil" data-translate="primary_school_level">2013 — 2017</div>
+                            <div class="zaman-okul">Şeyhbaba İlkokulu</div>
+                            <div class="zaman-aciklama" data-translate="primary_school_desc">Öğrenim hayatının temellerinin atıldığı ilk basamak.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bolum">
+            <div class="bolum-baslik goruntule">
+                <span class="bolum-numara">03</span>
+                <h2 class="bolum-adi" data-translate="langs_hobbies_title">Diller & İlgi Alanları</h2>
+                <div class="bolum-cizgi"></div>
+            </div>
+            <div class="bento-izgara">
+                <div class="kart kol-4 goruntule">
+                    <div class="kart-etiket" data-translate="languages_title">DİLLER</div>
+                    <div>
+                        <div class="dil-oge">
+                            <div class="dil-bilgi"><span class="dil-adi" data-translate="lang_turkish">Türkçe</span><span class="dil-seviye" data-translate="native_lang">ANADİL</span></div>
+                            <div class="dil-cubuk-iz"><div class="dil-cubuk-dolgu cubuk-vurgu" data-genislik="100"></div></div>
+                        </div>
+                        <div class="dil-oge">
+                            <div class="dil-bilgi"><span class="dil-adi" data-translate="lang_kurdish">Kürtçe</span><span class="dil-seviye" data-translate="native_lang">ANADİL</span></div>
+                            <div class="dil-cubuk-iz"><div class="dil-cubuk-dolgu cubuk-vurgu" data-genislik="100"></div></div>
+                        </div>
+                        <div class="dil-oge">
+                            <div class="dil-bilgi"><span class="dil-adi" data-translate="lang_english">İngilizce</span><span class="dil-seviye" data-translate="english_level">B1-B2</span></div>
+                            <div class="dil-cubuk-iz"><div class="dil-cubuk-dolgu cubuk-vurgu2" data-genislik="65"></div></div>
+                        </div>
+                        <div class="dil-oge">
+                            <div class="dil-bilgi"><span class="dil-adi" data-translate="lang_persian">Farsça</span><span class="dil-seviye" data-translate="persian_level">TEMEL</span></div>
+                            <div class="dil-cubuk-iz"><div class="dil-cubuk-dolgu cubuk-mor" data-genislik="30"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kart kol-8 goruntule">
+                    <div class="kart-etiket" data-translate="hobbies_title">HOBİLER & İLGİ ALANLARI</div>
+                    <div class="hobi-izgara">
+                        <div class="hobi-oge"><span class="hobi-ikon">📚</span><span data-translate="hobby_philosophy">Felsefe & Psikoloji</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">✍️</span><span data-translate="hobby_poetry">Şiir Yazmak & Okumak</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">💻</span><span data-translate="hobby_oss">Açık Kaynak Projeler</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">🔐</span><span data-translate="hobby_security">Güvenlik Araştırmaları</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">🏔️</span><span data-translate="hobby_hiking">Doğa Yürüyüşleri</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">🎭</span><span data-translate="hobby_theater">Tiyatro / Oyunculuk</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">🎙️</span><span data-translate="hobby_dubbing">Dublaj</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">⚽</span><span data-translate="hobby_football">Futbol</span></div>
+                        <div class="hobi-oge"><span class="hobi-ikon">🥋</span><span data-translate="hobby_karate">Karate</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bolum">
+            <div class="bolum-baslik goruntule">
+                <span class="bolum-numara">04</span>
+                <h2 class="bolum-adi" data-translate="skills_title">Teknik Yetkinlikler</h2>
+                <div class="bolum-cizgi"></div>
+            </div>
+            <div class="bento-izgara">
+                <div class="kart kol-12 goruntule">
+                    <div class="yetkinlik-ic-izgara">
+                        <div>
+                            <div class="yetkinlik-kategori-adi">
+                                <div class="nokta" style="background: var(--vurgu)"></div>
+                                <span data-translate="skills_backend">BACKEND & SİSTEM</span>
+                            </div>
+                            <div class="yetkinlik-haplar">
+                                <span class="yetkinlik-hap">Python</span>
+                                <span class="yetkinlik-hap">Django</span>
+                                <span class="yetkinlik-hap">FastAPI</span>
+                                <span class="yetkinlik-hap">REST API</span>
+                                <span class="yetkinlik-hap">Node.js</span>
+                                <span class="yetkinlik-hap">Automation</span>
+                            </div>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-white">Kahta Anadolu Lisesi</h4>
-                            <p class="text-sm text-zinc-400" data-translate="high_school_level">Lise / Sayısal Bölüm (2021 - 2025)</p>
-                            <p class="text-xs text-zinc-500 mt-1" data-translate="high_school_desc">Matematik ve Fen alanlarında yoğunlaşmış bir eğitim programı.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4 p-4 bg-zinc-800/50 rounded-2xl">
-                         <div class="bg-blue-500/10 text-blue-400 rounded-lg p-2 mt-1">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Fatih Sultan Mehmet İmamhatip Ortaokulu</h4>
-                            <p class="text-sm text-zinc-400" data-translate="middle_school_level">Ortaokul (2017 - 2021)</p>
-                            <p class="text-xs text-zinc-500 mt-1" data-translate="middle_school_desc">Temel bilimler, sosyal bilimler ve dini ilimler üzerine kurulu kapsamlı bir müfredat.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4 p-4 bg-zinc-800/50 rounded-2xl">
-                        <div class="bg-green-500/10 text-green-400 rounded-lg p-2 mt-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 8-4 8 4"/><path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2"/><path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/><path d="M18 5v17"/><path d="M6 5v17"/><path d="M12 5v17"/></svg>
+                            <div class="yetkinlik-kategori-adi">
+                                <div class="nokta" style="background: var(--vurgu2)"></div>
+                                <span data-translate="skills_frontend">FRONTEND & MOBİL</span>
+                            </div>
+                            <div class="yetkinlik-haplar">
+                                <span class="yetkinlik-hap">JavaScript</span>
+                                <span class="yetkinlik-hap">TypeScript</span>
+                                <span class="yetkinlik-hap">React</span>
+                                <span class="yetkinlik-hap">HTML/CSS</span>
+                                <span class="yetkinlik-hap">Tailwind</span>
+                                <span class="yetkinlik-hap">Android</span>
+                            </div>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-white">Şeyhbaba İlkokulu</h4>
-                            <p class="text-sm text-zinc-400" data-translate="primary_school_level">İlkokul (2013 - 2017)</p>
-                            <p class="text-xs text-zinc-500 mt-1" data-translate="primary_school_desc">Öğrenim hayatının temellerinin atıldığı ilk basamak.</p>
+                            <div class="yetkinlik-kategori-adi">
+                                <div class="nokta" style="background: var(--vurgu3)"></div>
+                                <span data-translate="skills_security">GÜVENLİK & ARAŞTIRMA</span>
+                            </div>
+                            <div class="yetkinlik-haplar">
+                                <span class="yetkinlik-hap">Penetration Testing</span>
+                                <span class="yetkinlik-hap">Reverse Engineering</span>
+                                <span class="yetkinlik-hap">Vulnerability Research</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="yetkinlik-kategori-adi">
+                                <div class="nokta" style="background: #a855f7"></div>
+                                <span data-translate="skills_ai">AI & VERİ BİLİMİ</span>
+                            </div>
+                            <div class="yetkinlik-haplar">
+                                <span class="yetkinlik-hap">Machine Learning</span>
+                                <span class="yetkinlik-hap">NLP</span>
+                                <span class="yetkinlik-hap">LLM / Prompt Eng.</span>
+                                <span class="yetkinlik-hap">Data Analysis</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-            
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-4">
-                 <h3 class="text-lg font-semibold mb-6" data-translate="languages_title">Diller</h3>
-                 <div class="space-y-4">
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-sm" data-translate="lang_turkish">Türkçe</span>
-                            <span class="text-xs text-zinc-500" data-translate="native_lang">Anadil</span>
-                        </div>
-                        <div class="w-full bg-zinc-700 rounded-full h-2">
-                            <div class="bg-green-400 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-sm" data-translate="lang_kurdish">Kürtçe</span>
-                            <span class="text-xs text-zinc-500" data-translate="native_lang">Anadil</span>
-                        </div>
-                        <div class="w-full bg-zinc-700 rounded-full h-2">
-                            <div class="bg-green-400 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-sm" data-translate="lang_english">İngilizce</span>
-                            <span class="text-xs text-zinc-500" data-translate="english_level">B1-B2 Seviye</span>
-                        </div>
-                        <div class="w-full bg-zinc-700 rounded-full h-2">
-                            <div class="bg-blue-400 h-2 rounded-full" style="width: 65%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-sm" data-translate="lang_persian">Farsça</span>
-                            <span class="text-xs text-zinc-500" data-translate="persian_level">Temel Seviye</span>
-                        </div>
-                        <div class="w-full bg-zinc-700 rounded-full h-2">
-                            <div class="bg-purple-400 h-2 rounded-full" style="width: 30%"></div>
-                        </div>
-                    </div>
-                 </div>
+        </section>
+
+        <section class="bolum">
+            <div class="bolum-baslik goruntule">
+                <span class="bolum-numara">05</span>
+                <h2 class="bolum-adi" data-translate="connect_title">Bağlan</h2>
+                <div class="bolum-cizgi"></div>
             </div>
-            
-            
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-8">
-                <h3 class="text-lg font-semibold mb-6" data-translate="hobbies_title">Hobiler & İlgi Alanları</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        <span class="text-sm" data-translate="hobby_philosophy">Felsefe & Psikoloji</span>
+            <div class="bento-izgara">
+                <div class="kart kol-6 goruntule">
+                    <div class="kart-etiket">SOSYAL</div>
+                    <div class="baglanti-izgara">
+                        <a href="https://github.com/HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                                <span class="baglanti-adi">GitHub</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/haciyusufergin/" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                                <span class="baglanti-adi">LinkedIn</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://x.com/HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                <span class="baglanti-adi">X / Twitter</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://t.me/yusuf_ergin" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                                <span class="baglanti-adi">Telegram</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/_yusufergin/" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                                <span class="baglanti-adi">Instagram</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
                     </div>
-                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        <span class="text-sm" data-translate="hobby_poetry">Şiir Yazmak & Okumak</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                        <span class="text-sm" data-translate="hobby_oss">Açık Kaynak Projeler</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
-                        <span class="text-sm" data-translate="hobby_security">Güvenlik Araştırmaları</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-                        <span class="text-sm" data-translate="hobby_hiking">Doğa Yürüyüşleri</span>
-                    </div>
-                    <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M14.65 19.35A8.8 8.8 0 0 0 18 12a8.8 8.8 0 0 0-3.35-7.35"/><path d="M9.35 4.65A8.8 8.8 0 0 0 6 12a8.8 8.8 0 0 0 3.35 7.35"/><line x1="14" x2="16" y2="9" y1="9"/><line x1="8" x2="10" y2="15" y1="15"/><path d="M12 18a3 3 0 0 1-3-3h6a3 3 0 0 1-3 3z"/><path d="M12 6a3 3 0 0 0 3 3H9a3 3 0 0 0 3-3z"/></svg>
-                        <span class="text-sm" data-translate="hobby_theater">Tiyatro / Oyunculuk</span>
-                    </div>
-                     <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-rose-400"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                        <span class="text-sm" data-translate="hobby_dubbing">Dublaj</span>
-                    </div>
-                     <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-teal-400"><circle cx="12" cy="12" r="10"></circle><path d="m15.6 8.4-2.8 4.2-2.8-4.2"></path><path d="M10 12h4"></path><path d="M15.6 15.6 12.8 11.4 10 15.6"></path><path d="M10 12h4"></path><path d="M8.4 8.4 11.2 12.6 8.4 16.8"></path><path d="M14 12h-4"></path><path d="M15.6 8.4 12.8 12.6 15.6 16.8"></path><path d="M10 12h4"></path></svg>
-                        <span class="text-sm" data-translate="hobby_football">Futbol</span>
-                    </div>
-                     <div class="flex items-center gap-3 p-3 bg-zinc-800/50 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400"><circle cx="18" cy="5" r="1"/><path d="M14 19l-4-4 2-2-4-4-2 2-4-4"/><path d="M15 13l-1.4-1.4"/><path d="m14 8 2.8-2.8"/></svg>
-                        <span class="text-sm" data-translate="hobby_karate">Karate</span>
+                </div>
+                <div class="kart kol-6 goruntule">
+                    <div class="kart-etiket" data-translate="other_platforms_title">DİĞER PLATFORMLAR</div>
+                    <div class="baglanti-izgara">
+                        <a href="https://www.youtube.com/@HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 4.46 4.46 0 0 1 4.5-4.5h10a4.5 4.5 0 0 1 4.5 4.5 24.12 24.12 0 0 1 0 10 4.46 4.46 0 0 1-4.5 4.5H7a4.5 4.5 0 0 1-4.5-4.5Z"/><path d="m10 15 5-3-5-3z"/></svg>
+                                <span class="baglanti-adi">YouTube</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://haciyusufergin.blogspot.com/" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+                                <span class="baglanti-adi" data-translate="poetry_blog">Şiir Blogu</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://t.me/erginsiir" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                                <span class="baglanti-adi" data-translate="poetry_channel">Şiir Kanalı</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://ergoparfum.com" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                                <span class="baglanti-adi" data-translate="perfume_site">Parfüm Sitesi</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
+                        <a href="https://halisaharakipbul.com" target="_blank" rel="noopener noreferrer" class="baglanti-link">
+                            <div class="baglanti-ic">
+                                <svg class="baglanti-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                                <span class="baglanti-adi" data-translate="futsal_site">Halı Saha Rakip Bul</span>
+                            </div>
+                            <svg class="baglanti-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-           
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
-                <h3 class="text-lg font-semibold mb-6" data-translate="skills_title">Teknik Yetkinlikler</h3>
-                <div class="space-y-4">
-                    <div>
-                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_backend">BACKEND & SİSTEM</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Python</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Django</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">FastAPI</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">REST API</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Node.js</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Automation</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_frontend">FRONTEND & MOBİL</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">JavaScript</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">TypeScript</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">React</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">HTML/CSS</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Tailwind</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Android</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_security">GÜVENLİK & ARAŞTIRMA</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Penetration Testing</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Reverse Engineering</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Vulnerability Research</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-zinc-500 mb-2" data-translate="skills_ai">AI & VERİ BİLİMİ</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Machine Learning</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">Data Analysis</span>
-                            <span class="text-xs px-3 py-1 bg-zinc-800 rounded-lg">TensorFlow</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-           
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-6">
-                <h3 class="text-lg font-semibold mb-6" data-translate="connect_title">Bağlan</h3>
-                <div class="space-y-2">
-                    <a href="https://github.com/haciyusufergin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">GitHub</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/haci-yusuf-ergin/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">LinkedIn</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                    <a href="https://x.com/HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">X / Twitter</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                    <a href="https://t.me/yusuf_ergin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">Telegram</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="bg-zinc-900 rounded-3xl p-8 border border-zinc-800 transition-all duration-300 hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 md:col-span-12">
-                 <h3 class="text-lg font-semibold mb-6" data-translate="other_platforms_title">Diğer Platformlar</h3>
-                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                     <a href="https://www.instagram.com/_yusufergin/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">Instagram</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                     <a href="https://www.youtube.com/@HaciYusufErgin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M2.5 17a24.12 24.12 0 0 1 0-10C2.5 4.24 4.24 2.5 7 2.5h10c2.76 0 4.5 1.74 4.5 4.5v10c0 2.76-1.74 4.5-4.5 4.5H7c-2.76 0-4.5-1.74-4.5-4.5Z"/><path d="m10 15 5-3-5-3z"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors">YouTube</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                     <a href="https://haciyusufergin.blogspot.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors" data-translate="poetry_blog">Şiir Blogu</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                     <a href="https://t.me/erginsiir" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors" data-translate="poetry_channel">Şiir Kanalı</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                     <a href="https://ergoparfum.com" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-zinc-800/50 rounded-2xl hover:bg-zinc-800 transition-all">
-                        <div class="flex items-center gap-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:text-white transition-colors"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><path d="M12 22a7 7 0 0 0 7-7h-4a3 3 0 0 1-3-3V2.5"/></svg>
-                            <span class="text-sm text-zinc-400 group-hover:text-white transition-colors" data-translate="perfume_site">Parfüm Sitesi</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </a>
-                 </div>
-            </div>
-        </div>
-
-        <footer class="mt-16 text-center text-zinc-600 text-sm">
-            <p>© 2025 Hacı Yusuf Ergin</p>
-            <p class="mt-2">ergin.dev</p>
+        <footer class="altbilgi">
+            <div class="altbilgi-yazi">© 2026 Hacı Yusuf Ergin</div>
+            <div class="altbilgi-domain">ergin.dev</div>
         </footer>
-    </main>
+
+    </div>
 
     <script>
+    const isikOgesi = document.getElementById('imlecIsigi');
+    let fareX = 0, fareY = 0, isikX = 0, isikY = 0;
 
-        const translations = {
-            tr: {
-                availability: 'İş alımına açık',
-                job_title: 'Full-Stack Developer & Security Researcher',
-                contact_button: 'İletişime geçelim',
-                hometown_label: 'Memleket',
-                focus_areas_label: 'Odak Alanları',
-                focus_cyber: 'Siber Güvenlik',
-                bio: `7 yıldır yazılım geliştiriyorum. Python ile backend sistemleri ve otomasyon araçları, 
-                      JavaScript/TypeScript ile modern web uygulamaları geliştiriyorum. Güvenlik araştırmaları, 
-                      tersine mühendislik ve yapay zeka projeleri üzerine çalışıyorum. Felsefe, problem çözmeye 
-                      yönelik analitik yaklaşımımı şekillendiriyor.`,
-                stat_experience: 'Yıllık Kodlama<br>Deneyimi',
-                stat_survival: 'Hayatta Kalma<br>Yılı',
-                stat_languages: 'Konuşma<br>Dili',
-                achievements_title: 'Birtakım Başarılar',
-                achievement_table_tennis_title: '1.lik',
-                achievement_table_tennis_desc: 'İlçe ve İl Masa Tenisi Birinciliği',
-                achievement_robot_title: '3. Lük',
-                achievement_robot_desc: 'Arduino Çizgi İzleyen Robot Yarışması',
-                achievement_gmail_desc: 'Tersine Mühendislik Analizi',
-                achievement_oss_title: 'Open Source Katkı',
-                achievement_oss_desc: 'Çeşitli Açık Kaynak Projelere Katkı',
-                education_title: 'Eğitim',
-                high_school_level: 'Lise / Sayısal Bölüm (2021 - 2025)',
-                high_school_desc: 'Matematik ve Fen alanlarında yoğunlaşmış bir eğitim programı.',
-                middle_school_level: 'Ortaokul (2017 - 2021)',
-                middle_school_desc: 'Temel bilimler, sosyal bilimler ve dini ilimler üzerine kurulu kapsamlı bir müfredat.',
-                primary_school_level: 'İlkokul (2013 - 2017)',
-                primary_school_desc: 'Öğrenim hayatının temellerinin atıldığı ilk basamak.',
-                languages_title: 'Diller',
-                lang_turkish: 'Türkçe',
-                lang_kurdish: 'Kürtçe',
-                lang_english: 'İngilizce',
-                lang_persian: 'Farsça',
-                native_lang: 'Anadil',
-                english_level: 'B1-B2 Seviye',
-                persian_level: 'Temel Seviye',
-                hobbies_title: 'Hobiler & İlgi Alanları',
-                hobby_philosophy: 'Felsefe & Psikoloji',
-                hobby_poetry: 'Şiir Yazmak & Okumak',
-                hobby_oss: 'Açık Kaynak Projeler',
-                hobby_security: 'Güvenlik Araştırmaları',
-                hobby_hiking: 'Doğa Yürüyüşleri',
-                hobby_theater: 'Tiyatro / Oyunculuk',
-                hobby_dubbing: 'Dublaj',
-                hobby_football: 'Futbol',
-                hobby_karate: 'Karate',
-                skills_title: 'Teknik Yetkinlikler',
-                skills_backend: 'BACKEND & SİSTEM',
-                skills_frontend: 'FRONTEND & MOBİL',
-                skills_security: 'GÜVENLİK & ARAŞTIRMA',
-                skills_ai: 'AI & VERİ BİLİMİ',
-                connect_title: 'Bağlan',
-                other_platforms_title: 'Diğer Platformlar',
-                poetry_blog: 'Şiir Blogu',
-                poetry_channel: 'Şiir Kanalı',
-                perfume_site: 'Parfüm Sitesi'
-            },
-            en: {
-                availability: 'Open to work',
-                job_title: 'Full-Stack Developer & Security Researcher',
-                contact_button: "Let's get in touch",
-                hometown_label: 'Hometown',
-                focus_areas_label: 'Focus Areas',
-                focus_cyber: 'Cyber Security',
-                bio: `I have been developing software for 7 years. I build backend systems and automation tools with Python, 
-                      and modern web applications with JavaScript/TypeScript. I work on security research, 
-                      reverse engineering, and artificial intelligence projects. Philosophy shapes my analytical 
-                      approach to problem-solving.`,
-                stat_experience: 'Years of Coding<br>Experience',
-                stat_survival: 'Years of<br>Survival',
-                stat_languages: 'Spoken<br>Languages',
-                achievements_title: 'Some Achievements',
-                achievement_table_tennis_title: '1st Place',
-                achievement_table_tennis_desc: 'District and Provincial Table Tennis Championship',
-                achievement_robot_title: '3rd Place',
-                achievement_robot_desc: 'Arduino Line Follower Robot Competition',
-                achievement_gmail_desc: 'Reverse Engineering Analysis',
-                achievement_oss_title: 'Open Source Contribution',
-                achievement_oss_desc: 'Contribution to Various Open Source Projects',
-                education_title: 'Education',
-                high_school_level: 'High School / Science & Math (2021 - 2025)',
-                high_school_desc: 'An educational program focused on Mathematics and Science.',
-                middle_school_level: 'Middle School (2017 - 2021)',
-                middle_school_desc: 'A comprehensive curriculum based on basic sciences, social sciences and religious studies.',
-                primary_school_level: 'Primary School (2013 - 2017)',
-                primary_school_desc: 'The first step where the foundations of learning life were laid.',
-                languages_title: 'Languages',
-                lang_turkish: 'Turkish',
-                lang_kurdish: 'Kurdish',
-                lang_english: 'English',
-                lang_persian: 'Persian',
-                native_lang: 'Native',
-                english_level: 'B1-B2 Level',
-                persian_level: 'Basic Level',
-                hobbies_title: 'Hobbies & Interests',
-                hobby_philosophy: 'Philosophy & Psychology',
-                hobby_poetry: 'Writing & Reading Poetry',
-                hobby_oss: 'Open Source Projects',
-                hobby_security: 'Security Research',
-                hobby_hiking: 'Nature Hiking',
-                hobby_theater: 'Theater / Acting',
-                hobby_dubbing: 'Voice Acting',
-                hobby_football: 'Football',
-                hobby_karate: 'Karate',
-                skills_title: 'Technical Skills',
-                skills_backend: 'BACKEND & SYSTEM',
-                skills_frontend: 'FRONTEND & MOBILE',
-                skills_security: 'SECURITY & RESEARCH',
-                skills_ai: 'AI & DATA SCIENCE',
-                connect_title: 'Connect',
-                other_platforms_title: 'Other Platforms',
-                poetry_blog: 'Poetry Blog',
-                poetry_channel: 'Poetry Channel',
-                perfume_site: 'Perfume Site'
+    document.addEventListener('mousemove', (e) => {
+        fareX = e.clientX;
+        fareY = e.clientY;
+    });
+
+    function isikAnimasyonu() {
+        isikX += (fareX - isikX) * 0.08;
+        isikY += (fareY - isikY) * 0.08;
+        isikOgesi.style.left = isikX + 'px';
+        isikOgesi.style.top = isikY + 'px';
+        requestAnimationFrame(isikAnimasyonu);
+    }
+    isikAnimasyonu();
+
+    if ('ontouchstart' in window) {
+        isikOgesi.style.display = 'none';
+    }
+
+    const navOgesi = document.getElementById('navigasyon');
+    window.addEventListener('scroll', () => {
+        navOgesi.classList.toggle('kaydi', window.scrollY > 50);
+    });
+
+    const goruntuleOgeleri = document.querySelectorAll('.goruntule');
+    const goruntuleGozlemci = new IntersectionObserver((girisler) => {
+        girisler.forEach(giris => {
+            if (giris.isIntersecting) {
+                giris.target.classList.add('gorunur');
+                goruntuleGozlemci.unobserve(giris.target);
             }
-        };
-
-        const setLanguage = (lang) => {
-            document.documentElement.lang = lang;
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-
-            document.getElementById('lang-tr').classList.toggle('active', lang === 'tr');
-            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-        };
-
-        document.getElementById('lang-tr').addEventListener('click', () => setLanguage('tr'));
-        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-        
-        setLanguage('tr');
-
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particlesArray;
-
-        const mouse = {
-            x: null,
-            y: null,
-            radius: (canvas.height / 120) * (canvas.width / 120)
-        };
-
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.x;
-            mouse.y = event.y;
         });
-        
-        window.addEventListener('mouseout', () => {
-            mouse.x = undefined;
-            mouse.y = undefined;
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    goruntuleOgeleri.forEach(oge => goruntuleGozlemci.observe(oge));
+
+    const sayaclar = document.querySelectorAll('[data-sayac]');
+    const sayacGozlemci = new IntersectionObserver((girisler) => {
+        girisler.forEach(giris => {
+            if (giris.isIntersecting) {
+                const oge = giris.target;
+                const hedef = parseInt(oge.dataset.sayac);
+                const sure = 1500;
+                const baslangic = performance.now();
+                function sayacGuncelle(simdi) {
+                    const gecen = simdi - baslangic;
+                    const ilerleme = Math.min(gecen / sure, 1);
+                    const yumusak = 1 - Math.pow(1 - ilerleme, 3);
+                    oge.textContent = Math.round(yumusak * hedef) + '+';
+                    if (ilerleme < 1) requestAnimationFrame(sayacGuncelle);
+                }
+                requestAnimationFrame(sayacGuncelle);
+                sayacGozlemci.unobserve(oge);
+            }
         });
+    }, { threshold: 0.5 });
+    sayaclar.forEach(oge => sayacGozlemci.observe(oge));
 
-        class Particle {
-            constructor(x, y, directionX, directionY, size, color) {
-                this.x = x;
-                this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
-                this.size = size;
-                this.color = color;
+    const dilCubuklari = document.querySelectorAll('.dil-cubuk-dolgu');
+    const cubukGozlemci = new IntersectionObserver((girisler) => {
+        girisler.forEach(giris => {
+            if (giris.isIntersecting) {
+                const cubuk = giris.target;
+                setTimeout(() => {
+                    cubuk.style.width = cubuk.dataset.genislik + '%';
+                }, 200);
+                cubukGozlemci.unobserve(cubuk);
             }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = 'rgba(139, 92, 246, 0.5)';
-                ctx.fill();
-            }
-
-            update() {
-                if (this.x > canvas.width || this.x < 0) {
-                    this.directionX = -this.directionX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.directionY = -this.directionY;
-                }
-
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius + this.size) {
-                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                        this.x += 5;
-                    }
-                    if (mouse.x > this.x && this.x > this.size * 10) {
-                        this.x -= 5;
-                    }
-                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                        this.y += 5;
-                    }
-                    if (mouse.y > this.y && this.y > this.size * 10) {
-                        this.y -= 5;
-                    }
-                }
-                this.x += this.directionX;
-                this.y += this.directionY;
-                this.draw();
-            }
-        }
-
-        function init() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 9000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1;
-                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 0.4) - 0.2;
-                let directionY = (Math.random() * 0.4) - 0.2;
-                let color = 'rgba(139, 92, 246, 0.5)';
-
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-            }
-        }
-
-        function connect() {
-            let opacityValue = 1;
-            for (let a = 0; a < particlesArray.length; a++) {
-                for (let b = a; b < particlesArray.length; b++) {
-                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(147, 112, 219, ${opacityValue})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
-            connect();
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = innerWidth;
-            canvas.height = innerHeight;
-            mouse.radius = (canvas.height / 120) * (canvas.width / 120);
-            init();
         });
+    }, { threshold: 0.3 });
+    dilCubuklari.forEach(cubuk => cubukGozlemci.observe(cubuk));
 
-        init();
-        animate();
+    class MetinKaristirici {
+        constructor(oge) {
+            this.oge = oge;
+            this.karakterler = '!<>-_\\/[]{}—=+*^?#________';
+            this.guncelle = this.guncelle.bind(this);
+        }
+
+        metinAyarla(yeniMetin) {
+            const eskiMetin = this.oge.innerText;
+            const uzunluk = Math.max(eskiMetin.length, yeniMetin.length);
+            const soz = new Promise(cozumle => this.cozumle = cozumle);
+            this.kuyruk = [];
+            for (let i = 0; i < uzunluk; i++) {
+                const eski = eskiMetin[i] || '', yeni = yeniMetin[i] || '';
+                const bas = Math.floor(Math.random() * 20);
+                const son = bas + Math.floor(Math.random() * 20);
+                this.kuyruk.push({ eski, yeni, bas, son });
+            }
+            cancelAnimationFrame(this.kareIstegi);
+            this.kare = 0;
+            this.guncelle();
+            return soz;
+        }
+
+        guncelle() {
+            let cikti = '', tamamlanan = 0;
+            for (let i = 0, n = this.kuyruk.length; i < n; i++) {
+                let { eski, yeni, bas, son, karakter } = this.kuyruk[i];
+                if (this.kare >= son) {
+                    tamamlanan++;
+                    cikti += yeni;
+                } else if (this.kare >= bas) {
+                    if (!karakter || Math.random() < 0.28) {
+                        karakter = this.karakterler[Math.floor(Math.random() * this.karakterler.length)];
+                        this.kuyruk[i].karakter = karakter;
+                    }
+                    cikti += `<span style="color:var(--vurgu);opacity:0.5">${karakter}</span>`;
+                } else {
+                    cikti += eski;
+                }
+            }
+            this.oge.innerHTML = cikti;
+            if (tamamlanan === this.kuyruk.length) {
+                this.cozumle();
+            } else {
+                this.kareIstegi = requestAnimationFrame(this.guncelle);
+                this.kare++;
+            }
+        }
+    }
+
+    const ceviriler = {
+        tr: {
+            availability: 'İş alımına açık',
+            hero_tag: 'FULL-STACK DEVELOPER & GÜVENLİK ARAŞTIRMACISI',
+            bio: 'Kod yazarak büyüdüm. Python ile otomasyon ve güvenlik araçları, TypeScript/React ile modern web uygulamaları geliştiriyorum. Old school bir otomasyon tutkunuyum — scraping, tersine mühendislik ve offensive security benim oyun alanım.',
+            bio_extended: '7 yıldır yazılım dünyasındayım. Python ile otomasyon araçları, web scraping sistemleri ve güvenlik araçları; TypeScript ve React ile modern web uygulamaları geliştiriyorum. Old school hardcore otomasyon yaklaşımını benimsiyorum — requests, selenium, tersine mühendislik ve offensive security benim doğal habitatım. Felsefe ve şiir, analitik düşünce yapımı besleyen en önemli ilgi alanlarım.',
+            contact_button: 'İletişime Geç',
+            about_section_title: 'Hakkımda',
+            hometown_label: 'MEMLEKET',
+            focus_cyber: 'Siber Güvenlik',
+            stat_experience: 'Yıllık Kodlama<br>Deneyimi',
+            stat_survival: 'Hayatta Kalma<br>Yılı',
+            stat_languages: 'Konuşma<br>Dili',
+            achievements_section_title: 'Başarılar & Eğitim',
+            achievements_title: 'BAŞARILAR',
+            achievement_table_tennis_title: 'İlçe & İl Birinciliği',
+            achievement_table_tennis_desc: 'İlçe ve İl Masa Tenisi Birinciliği',
+            achievement_robot_title: 'Robot Yarışması',
+            achievement_robot_desc: 'Arduino Çizgi İzleyen Robot Yarışması',
+            achievement_gmail_desc: 'Tersine Mühendislik Analizi',
+            achievement_oss_title: 'Open Source Katkı',
+            achievement_oss_desc: 'Çeşitli Açık Kaynak Projelere Katkı',
+            education_title: 'EĞİTİM',
+            high_school_level: '2021 — 2025',
+            high_school_desc: 'Matematik ve Fen alanlarında yoğunlaşmış bir eğitim programı.',
+            middle_school_level: '2017 — 2021',
+            middle_school_desc: 'Temel bilimler, sosyal bilimler ve dini ilimler üzerine kurulu kapsamlı bir müfredat.',
+            primary_school_level: '2013 — 2017',
+            primary_school_desc: 'Öğrenim hayatının temellerinin atıldığı ilk basamak.',
+            langs_hobbies_title: 'Diller & İlgi Alanları',
+            languages_title: 'DİLLER',
+            lang_turkish: 'Türkçe',
+            lang_kurdish: 'Kürtçe',
+            lang_english: 'İngilizce',
+            lang_persian: 'Farsça',
+            native_lang: 'ANADİL',
+            english_level: 'B1-B2',
+            persian_level: 'TEMEL',
+            hobbies_title: 'HOBİLER & İLGİ ALANLARI',
+            hobby_philosophy: 'Felsefe & Psikoloji',
+            hobby_poetry: 'Şiir Yazmak & Okumak',
+            hobby_oss: 'Açık Kaynak Projeler',
+            hobby_security: 'Güvenlik Araştırmaları',
+            hobby_hiking: 'Doğa Yürüyüşleri',
+            hobby_theater: 'Tiyatro / Oyunculuk',
+            hobby_dubbing: 'Dublaj',
+            hobby_football: 'Futbol',
+            hobby_karate: 'Karate',
+            skills_title: 'Teknik Yetkinlikler',
+            skills_backend: 'BACKEND & SİSTEM',
+            skills_frontend: 'FRONTEND & MOBİL',
+            skills_security: 'GÜVENLİK & ARAŞTIRMA',
+            skills_ai: 'AI & VERİ BİLİMİ',
+            connect_title: 'Bağlan',
+            other_platforms_title: 'DİĞER PLATFORMLAR',
+            poetry_blog: 'Şiir Blogu',
+            poetry_channel: 'Şiir Kanalı',
+            perfume_site: 'Parfüm Sitesi',
+            futsal_site: 'Halı Saha Rakip Bul'
+        },
+        en: {
+            availability: 'Open to work',
+            hero_tag: 'FULL-STACK DEVELOPER & SECURITY RESEARCHER',
+            bio: 'I grew up writing code. I build automation and security tools with Python, modern web apps with TypeScript/React. Old school automation enthusiast — scraping, reverse engineering and offensive security are my playground.',
+            bio_extended: 'I have been in the software world for 7 years. I build automation tools, web scraping systems and security tools with Python; modern web applications with TypeScript and React. I embrace an old school hardcore automation approach — requests, selenium, reverse engineering and offensive security are my natural habitat. Philosophy and poetry are the key interests that fuel my analytical mindset.',
+            contact_button: "Let's Connect",
+            about_section_title: 'About Me',
+            hometown_label: 'HOMETOWN',
+            focus_cyber: 'Cyber Security',
+            stat_experience: 'Years of Coding<br>Experience',
+            stat_survival: 'Years of<br>Survival',
+            stat_languages: 'Spoken<br>Languages',
+            achievements_section_title: 'Achievements & Education',
+            achievements_title: 'ACHIEVEMENTS',
+            achievement_table_tennis_title: 'District & Provincial 1st',
+            achievement_table_tennis_desc: 'District and Provincial Table Tennis Championship',
+            achievement_robot_title: 'Robot Competition',
+            achievement_robot_desc: 'Arduino Line Follower Robot Competition — 3rd Place',
+            achievement_gmail_desc: 'Reverse Engineering Analysis',
+            achievement_oss_title: 'Open Source Contribution',
+            achievement_oss_desc: 'Contribution to Various Open Source Projects',
+            education_title: 'EDUCATION',
+            high_school_level: '2021 — 2025',
+            high_school_desc: 'An educational program focused on Mathematics and Science.',
+            middle_school_level: '2017 — 2021',
+            middle_school_desc: 'A comprehensive curriculum based on basic sciences, social sciences and religious studies.',
+            primary_school_level: '2013 — 2017',
+            primary_school_desc: 'The first step where the foundations of learning life were laid.',
+            langs_hobbies_title: 'Languages & Interests',
+            languages_title: 'LANGUAGES',
+            lang_turkish: 'Turkish',
+            lang_kurdish: 'Kurdish',
+            lang_english: 'English',
+            lang_persian: 'Persian',
+            native_lang: 'NATIVE',
+            english_level: 'B1-B2',
+            persian_level: 'BASIC',
+            hobbies_title: 'HOBBIES & INTERESTS',
+            hobby_philosophy: 'Philosophy & Psychology',
+            hobby_poetry: 'Writing & Reading Poetry',
+            hobby_oss: 'Open Source Projects',
+            hobby_security: 'Security Research',
+            hobby_hiking: 'Nature Hiking',
+            hobby_theater: 'Theater / Acting',
+            hobby_dubbing: 'Voice Acting',
+            hobby_football: 'Football',
+            hobby_karate: 'Karate',
+            skills_title: 'Technical Skills',
+            skills_backend: 'BACKEND & SYSTEM',
+            skills_frontend: 'FRONTEND & MOBILE',
+            skills_security: 'SECURITY & RESEARCH',
+            skills_ai: 'AI & DATA SCIENCE',
+            connect_title: 'Connect',
+            other_platforms_title: 'OTHER PLATFORMS',
+            poetry_blog: 'Poetry Blog',
+            poetry_channel: 'Poetry Channel',
+            perfume_site: 'Perfume Site',
+            futsal_site: 'Find Futsal Opponents'
+        }
+    };
+
+    const kahramanAciklama = document.querySelector('.kahraman-aciklama');
+    const karistirici = new MetinKaristirici(kahramanAciklama);
+
+    const dilAyarla = (dil) => {
+        document.documentElement.lang = dil;
+        document.querySelectorAll('[data-translate]').forEach(oge => {
+            const anahtar = oge.getAttribute('data-translate');
+            if (ceviriler[dil][anahtar] && oge !== kahramanAciklama) {
+                oge.innerHTML = ceviriler[dil][anahtar];
+            }
+        });
+        if (ceviriler[dil]['bio']) {
+            karistirici.metinAyarla(ceviriler[dil]['bio']);
+        }
+        document.getElementById('dil-tr').classList.toggle('aktif', dil === 'tr');
+        document.getElementById('dil-en').classList.toggle('aktif', dil === 'en');
+    };
+
+    document.getElementById('dil-tr').addEventListener('click', () => dilAyarla('tr'));
+    document.getElementById('dil-en').addEventListener('click', () => dilAyarla('en'));
+    dilAyarla('tr');
     </script>
 </body>
 </html>
